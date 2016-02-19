@@ -9,7 +9,7 @@ questions_and_answers = [
     ['Ничто в питоне', 'None', 'str'],
     ['Всё в питоне', 'object', 'str'],
     ['Юни..., uni.... что-что, простите', 'unicode', 'str'],
-    ['Точка, которая плавает в числе. Это Уже не так остроумно, но что то я иссяк -_-', 'float', 'str'],
+    ['Где плавает точка', 'float', 'str'],
     ['А! Где я', 'tceh', 'str'],
 ]
 
@@ -19,26 +19,28 @@ else:
     input_function = input
 
 rus_types = {'int': 'число', 'str': 'строка', 'float': 'число с плавающей точкой'}
-user_answer = ""
 tries = 0
+current_num = 0
 
-print("\nИмейте в виду, что вы находитесь на занятии, ответы это всегда ОДНО английское слово по существу или число и здесь как питоне -- регистр имеет значение!\n")
+print("\nИмейте в виду, что вы находитесь на занятии, ответы это всегда ОДНО английское слово по существу или число и здесь как питон -- регистр имеет значение!\n")
 
-for i in questions_and_answers:
-    while 1 is 1:
-        user_answer = input_function(str(i[0]) + " (" + rus_types[i[2]] + ")? ")
+while current_num < len(questions_and_answers):
+    current_elem = questions_and_answers[current_num]
+    user_answer = input_function(str(current_elem[0]) + " (" + rus_types[current_elem[2]] + ")? ")
 
-        try:
-            eval(i[2] +  "('" + user_answer + "')") ## ugly hack, но как по-другому здесь использовать именно try/except я не придумал, проще было бы это сделать с помощью if/else :(
-        except ValueError:
-            tries += 1
-            print("Некорректный тип ответа! Вам же русским языком напечатано (в скобках) какой тип ответа должен быть!")
-            continue
+    try:
+       eval(current_elem[2] +  "('" + user_answer + "')") ## ugly hack, но как по-другому здесь использовать именно try/except я не придумал, проще было бы это сделать с помощью if/else :(
+    except ValueError:
+        tries += 1
+        print("Некорректный тип ответа! Вам же русским языком напечатано (в скобках) какой тип ответа должен быть!")
+        continue
 
-        if user_answer == i[1]: break
-        else: 
-            tries += 1
-            print("Ответ неверный, попробуйте ещё раз.")
+    if user_answer == current_elem[1]: 
+        current_num += 1
+        print("Верно! Продолжаем.\n") 
+    else: 
+        tries += 1
+        print("Ответ неверный, попробуйте ещё раз.") 
 
 print("")
 if tries is 0: print("Поздравляю, вы ответили на все загадки в этот раз с первой попытки! Наверное видели код или вы это я? :)")
