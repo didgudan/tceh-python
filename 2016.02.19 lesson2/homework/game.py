@@ -18,7 +18,7 @@ def shuffle_field():
     tag_list.append(EMPTY_MARK)
     random.shuffle(tag_list)
     
-    tag_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, EMPTY_MARK, 12, 13, 14, 11]
+    # tag_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, EMPTY_MARK, 12, 13, 14, 11]
     
     return tag_list
 
