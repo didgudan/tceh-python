@@ -7,12 +7,6 @@ import sys
 EMPTY_MARK = ' '
 
 
-if sys.version_info[0] == 2:
-    input_function = raw_input
-else:
-    input_function = input
-
-
 def shuffle_field():
     # """
     # This method is used to create a field at the very start of the game.
@@ -20,11 +14,11 @@ def shuffle_field():
     # one of which is a empty space.
     # """
     # ...
-    tag_list = list(range(1, 16))
+    tag_list = list(range(0, 15))
     tag_list.append(EMPTY_MARK)
     random.shuffle(tag_list)
     
-    # tag_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, EMPTY_MARK, 13, 14, 15, 12]
+    tag_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, EMPTY_MARK, 12, 13, 14, 11]
     
     return tag_list
 
@@ -62,7 +56,7 @@ def is_game_finished(field):
     if field[len(field)-1] != EMPTY_MARK: return False
 
     for elem in field[0:-1]:
-        if not field.index(elem) + 1 == elem: return False
+        if not field.index(elem) == elem: return False
 
     return True    
 
@@ -87,24 +81,22 @@ def perform_move(field, key):
     # """
     # ...
     current_index = field.index(EMPTY_MARK)
+    ## current_position[0] - horizontal index, current_position[1] - vertical index
     current_position = [ int(float(current_index) / 4) + 1, current_index%4 + 1 ]
 
-    if (key == "w"): new_position = [ current_position[0] - 1, current_position[1] ]
-    elif (key == "s"): new_position = [ current_position[0] + 1, current_position[1] ]
-    elif (key == "a"): new_position = [ current_position[0], current_position[1] - 1 ]
-    elif (key == "d"): new_position = [ current_position[0], current_position[1] + 1 ]
+    if (key is "w"): new_position = [ current_position[0] - 1, current_position[1] ]
+    elif (key is "s"): new_position = [ current_position[0] + 1, current_position[1] ]
+    elif (key is "a"): new_position = [ current_position[0], current_position[1] - 1 ]
+    elif (key is "d"): new_position = [ current_position[0], current_position[1] + 1 ]
+    elif (key == "exit"): raise SystemExit
     else:
-        pass
-
-    # print(new_position)
-    # print(get_key_by_position(new_position))
+        raise IndexError("Неизвестный ход!")
 
     if can_i_move(new_position):
         current_key, new_key = get_key_by_position(current_position), get_key_by_position(new_position)
-        # print(current_key, new_key)
         field[current_key], field[new_key] = field[new_key], field[current_key]
     else:
-        print("Can't do such move!\n")
+        raise IndexError("Туда нельзя!")
 
     return field
 
@@ -117,7 +109,14 @@ def handle_user_input():
     # :return: <str> current move.
     # """
     # ...
-    pass
+    if sys.version_info[0] == 2:
+        input_function = raw_input
+    else:
+        input_function = input
+
+    user_input = input_function("\nВаш ход (wsad): ")
+
+    return user_input
 
 
 def main():
@@ -127,12 +126,21 @@ def main():
     # """current_string = 
     tag_list = shuffle_field()
     
-    while not is_game_finished(tag_list):
-        print_field(tag_list)    
-        move = input_function("\nВаш ход (wsad): ")
-        tag_list = perform_move(tag_list, move)
+    print("Для выхода наберите exit.\n")
     
-    print("\n\n\nТадам! Вы победили!\n\n\n")
+    while not is_game_finished(tag_list):
+        try:    
+            print_field(tag_list)    
+            move = handle_user_input()
+            tag_list = perform_move(tag_list, move)
+        except Exception as ex:
+            print(ex, "\n")
+        except SystemExit as ex:
+            print("\nДо свиданья!\n")
+            exit()
+        
+    print_field(tag_list)
+    print("\nТадам! Вы победили!\n")
 
 # see http://stackoverflow.com/questions/419163/what-does-if-name-main-do
 if __name__ == '__main__': 
