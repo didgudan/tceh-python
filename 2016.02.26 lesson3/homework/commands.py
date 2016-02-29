@@ -236,9 +236,10 @@ class LoadCommand(BaseCommand):
 
         working_directory = os.getcwd()
         os.chdir(SAVE_PATH)
-        print(glob.glob("*"))
 
         saved_files = glob.glob("*" + SAVE_EXTENSION)
+        print(saved_files)
+        
         if len(saved_files) < 1:
             print('There is no files to load!')
             return
