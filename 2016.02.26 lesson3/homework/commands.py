@@ -121,7 +121,7 @@ class ExitCommand(BaseCommand):
 
 
 class DoneTypeCommand(BaseCommand):
-    def perform(self, objects, current_status, *args, **kwargs):
+    def perform(self, objects, *args, **kwargs):
         if self.check_objects_size(objects) is False:
             return
 
@@ -131,10 +131,10 @@ class DoneTypeCommand(BaseCommand):
 
         selection = self.loop_input(objects)
 
-        if objects[selection].status == current_status:
-            print("It is already has status", str(current_status))
+        if objects[selection].status == args[0]:
+            print("It is already has status", str(args[0]))
         else:
-            objects[selection].status = current_status
+            objects[selection].status = args[0]
             print('Status is set to:', objects[selection].status)
 
 
@@ -239,7 +239,7 @@ class LoadCommand(BaseCommand):
 
         saved_files = glob.glob("*" + SAVE_EXTENSION)
         print(saved_files)
-        
+
         if len(saved_files) < 1:
             print('There is no files to load!')
             return
