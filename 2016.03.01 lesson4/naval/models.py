@@ -28,10 +28,10 @@ class Player(object):
 class Ship(object):
     def __init__(self, size, coordinates=[]):
         self.size = size
-        self.coordinatesXY = coordinates
+        self.coordinates = coordinates
 
     def __str__(self):
-        return self.coordinatesXY
+        return self.coordinates
 
 
 class Field(object):

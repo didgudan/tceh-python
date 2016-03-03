@@ -3,7 +3,7 @@
 from __future__ import print_function
 
 from utils import get_input_function
-from models import Player
+from models import Player, Field
 
 class BaseAction(object):
     input_function = get_input_function()
@@ -22,6 +22,7 @@ class MoveAction(BaseAction):
 
         current_player = Player()
         current_player.name = self.input_function('Input name for player', current_player_number, ': ')
+        current_player.field = Field()
         storage.players.append(current_player)
 
 
@@ -30,11 +31,15 @@ class MoveAction(BaseAction):
         # for current player
         pass
 
-    def get_players_by_number(self, storage, current_player_number):
-        pass
+    def render(self, storage):
+        current_field = []
 
-    def render(self, current_player, opposite_player_field):
-        pass
+        full_size = storage.current_player.field.size[0] * storage.current_player.field.size[1]
+        for point in full_size:
+            current_field.append(".")
+
+        for ship in storage.current_player.ships:
+            pass
 
     def perform_move(self, storage):
         if storage.stage is "data_input":
@@ -46,5 +51,4 @@ class MoveAction(BaseAction):
 
             return
         elif storage.stage is "game":
-            current_player, opposite_player = self.get_players_by_number(storage, current_player_number)
-            self.render(current_player, opposite_player.field)
+            self.render(storage)
