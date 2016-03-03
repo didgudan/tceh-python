@@ -72,4 +72,25 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    # main()
+
+    class Storage(object):
+        obj = None
+
+        items = None
+
+        @classmethod
+        def __new__(cls, *args):
+            if cls.obj is None:
+                cls.obj = object.__new__(cls)
+                cls.items = []
+            return cls.obj
+
+    s1 = Storage()
+    s1.items.append(1)
+
+    s2 = Storage()
+    s2.items.append(2)
+
+    print(s1.items)
+    print(s2.items)
