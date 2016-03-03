@@ -4,22 +4,22 @@ from __future__ import print_function
 
 class Storage(object):
     obj = None
-    items = None
+    players = None
     stage = None
+    current_player = None
 
     @classmethod
     def __new__(cls, *args):
         if cls.obj is None:
             cls.obj = object.__new__(cls)
             cls.stage = "data_input"
-            cls.items = []
+            cls.players = []
         return cls.obj
 
 
 class Player(object):
     def __init__(self, name, number):
         self.name = name
-        self.number = number
 
     def __str__(self):
         return self.name

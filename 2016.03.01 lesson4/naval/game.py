@@ -11,11 +11,10 @@ def main():
 
     # player1 = Player()
     # player2 = Player()
-    current_player_number = 1
 
     while True:
 
-        move.perform_move(storage, current_player_number)
+        move.perform_move(storage)
 
 
         # try:
@@ -26,9 +25,6 @@ def main():
         # except KeyboardInterrupt:
         #     print('Shutting down, bye!')
         #     break
-        if current_player_number is 1: current_player_number = 2
-        elif current_player_number is 2: current_player_number = 1
-
 
 if __name__ == '__main__':
     main()
