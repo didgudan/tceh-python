@@ -27,9 +27,23 @@ class MoveAction(BaseAction):
 
 
     def _make_ships_for_player(self, storage):
-        # 1 ship 4 cells, 2 ships 3 cells, 3 ships 2 cells and 4 ships 1 cell
-        # for current player
-        pass
+        dimensions = [4,3,3,2,2,2,1,1,1,1]
+        ships = []
+        ship_number = 1
+        print('Enter ships coordinates, use space to sepaprate cells')
+        while ship_number <= 10:
+           print('Ship # ',ship_number)
+           print('It has ',dimensions[ship_number-1],'cells')
+           coordinates = raw_input().split()
+           if len(coordinates)==dimensions[ship_number-1]:
+               ships.append(coordinates)
+               print('Ship #',ship_number,'of',dimensions[ship_number-1],'created')
+               print''
+               ship_number+=1
+           else:
+               print("Coordinates don't fit the ship, try again")
+               pass
+        print(ships)
 
     def render(self, storage):
         current_field = []
