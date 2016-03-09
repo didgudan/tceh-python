@@ -2,40 +2,21 @@
 
 from __future__ import print_function
 
-class Storage(object):
-    obj = None
-    players = None
-    stage = None
-    current_player = None
-
-    @classmethod
-    def __new__(cls, *args):
-        if cls.obj is None:
-            cls.obj = object.__new__(cls)
-            cls.stage = "data_input"
-            cls.players = []
-        return cls.obj
-
-
-class Player(object):
-    def __init__(self, name, number):
-        self.name = name
-
-    def __str__(self):
-        return self.name
-
 
 class Ship(object):
-    def __init__(self, size, coordinates=[]):
-        self.size = size
-        self.coordinates = coordinates
+    def __init__(self, start_coordinate, end_coordinate):
+        self.start_coordinate = start_coordinate
+        self.end_coordinate = end_coordinate
 
     def __str__(self):
-        return self.coordinates
+        return str(self.start_coordinate) + "-" + str(self.end_coordinate)
 
 
 class Field(object):
-    def __init__(self, size=[10,10] ):
+    def __init__(self, size=10):
+        if (size > 99) or (size < 5):
+            raise IndexError("Size of game filed must be between 5 and 99 squares!")
+
         self.shoots = []
         self.size = size
 
@@ -43,19 +24,13 @@ class Field(object):
     #     return self.
 
 
-# class Field(object):
-#     def __init__(self):
+class Shot(object):
+    def __init__(self, coordintate):
+        self.coordinate = coordintate
+
+    def __str__(self):
+        return self.coordinate
 
 
-# field1 = Field()
-
-# p1 = Player("Alex")
-# p1.own_field = Field()
-# p1.opponent_field = Field()
-# p1.own_field.ships = []
-# print(p1)
-#
-# Storage().default_ships=[Ship(4), Ship(3), Ship(3), Ship(2), Ship(2)]
-
-print(u'\u25A0\u25A0\u25A1', end="")
-print("....x")
+# print(u'\u25A0\u25A0\u25A1', end="")
+# print("....x")
