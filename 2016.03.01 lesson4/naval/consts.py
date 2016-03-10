@@ -1,5 +1,11 @@
 import collections
-DICT = collections.OrderedDict()
+import string
 
-DICT.update({"A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6, "G": 7, "H": 8, "I": 9, "J": 10})
-DICT = collections.OrderedDict(sorted(DICT.items(), key=lambda t: t[0]))
+DEFAULT_FIELD_SIZE = 10
+
+DICT = collections.OrderedDict()
+num = 0
+for char in string.ascii_uppercase[0:DEFAULT_FIELD_SIZE]:
+    DICT[char] = num + 1
+    num += 1
+
