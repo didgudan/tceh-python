@@ -1,0 +1,15 @@
+{% extends '_base_template.html' %}
+
+{% block content %}
+
+<div class="content">
+    {% for blog_post in blog_posts %}
+        <p> Author -- {{blog_post.author}} at {{blog_post.date}}.
+            Title -- {{blog_post.title}}.
+        </p>
+        <p>Text is: {{blog_post.text}}</p>
+        <p>&nbsp;</p>
+    {% endfor %}
+</div>
+
+{% endblock %}
