@@ -4,6 +4,7 @@
 
 <div class="content">
     {% for blog_post in blog_posts %}
+        <p> <img src="data:image/png;base64,{{blog_post.base64_qr_code}}"/> </p>
         <p> Author -- {{blog_post.author}} at {{blog_post.date}}.
             Title -- {{blog_post.title}}.
         </p>

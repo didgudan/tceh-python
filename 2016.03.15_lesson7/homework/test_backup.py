@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 
-from cStringIO import StringIO
-import base64
-from flask import Flask, request, render_template
-
+import os
+from flask import Flask, request, render_template, json
+from flask.json import JSONEncoder, JSONDecoder
 
 import config
 from models import BlogPostModel
 from forms import BlogPostForm
-from json_utils import initialize_json, load_objects_from_json, save_to_json
 
 # Дорабатывает блог.
 # Задача: сохранять записи при выходе из приложения в json-файл, загружать
@@ -21,51 +19,63 @@ from json_utils import initialize_json, load_objects_from_json, save_to_json
 app = Flask(__name__, template_folder='templates')
 app.config.from_object(config)
 
+json_backend = "blog.json"
+
+class PostEncoder(JSONEncoder):
+    def default(self, obj):
+        return [obj.__dict__]
 
 
-import qrcode
-def make_base64_qrcode(data=""):
-    qr = qrcode.QRCode()
-    qr.add_data(data)
-    qr.make(fit=True)
-    # make qrcode
-    img = qr.make_image()
 
-    # make new IO
-    output = StringIO()
-    # save img with qrcode to IO
-    img.save(output)
-    # get from IO qrcode img in correct format
-    contents = output.getvalue()
-    # encode qrcode image to base64
-    base64_qr_code = base64.b64encode(contents)
+def make_empty_file():
+    with open(json_backend, 'w') as f:
+        json.dump('', f)
 
-    return base64_qr_code
+
+def from_json(json_object):
+    # for elem in json_object:
+    if 'author' in json_object:
+        return BlogPostModel(json_object)
+
+def load_from_json():
+    try:
+        with open(json_backend, "r") as f:
+            load_data = json.load(f)
+            posts = JSONDecoder(object_hook = from_json).decode(load_data)
+
+            return posts
+    except IOError as err:
+        make_empty_file()
+        return []
+
+
+def save_to_json(data):
+    from_json = load_from_json()
+    if len(from_json) < 2:
+        from_json = data
+    with open(json_backend, 'w') as f:
+        json.dump(from_json, f, cls=PostEncoder)
 
 
 @app.route('/', methods=['GET'])
 def home():
-    initialize_json()
-    blog_posts = load_objects_from_json()
-    for post in blog_posts:
-        post.base64_qr_code = make_base64_qrcode(post.__dict__)
-
     return render_template(
         'home.html',
-        blog_posts=blog_posts
+        blog_posts=load_from_json()
     )
 
 
 @app.route('/post', methods=['GET', 'POST'])
 def new_post():
-    initialize_json()
     post_result = None
 
     if request.method == 'POST':
         form = BlogPostForm(request.form)
         if form.validate():
             new_post = BlogPostModel(form.data)
-            save_to_json(new_post)
+            save_to_json(
+                PostEncoder().encode(new_post)
+            )
             post_result = "Posted successful"
     else:
         form = BlogPostForm()
