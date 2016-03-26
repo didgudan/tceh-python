@@ -1,0 +1,16 @@
+{
+    "title": "parent",
+    "type": "object",
+    "required": ["x", "y", "result"],
+    "properties": {
+        "results": {
+            "$ref": "file:child.json"
+        },
+        "x": {
+            "type": "number"
+        },
+        "y": {
+            "type": "number"
+        }
+    }
+}

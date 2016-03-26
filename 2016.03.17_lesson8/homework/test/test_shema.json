@@ -1,0 +1,40 @@
+{
+  "type": "object",
+  "required": ["order", "client"],
+  "properties": {
+    "order": {
+      "type": "object",
+      "required": ["product_name", "count"],
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "product_name": {
+          "type": "string",
+          "$ref": "file:valid_goods.json"
+        }
+      }
+    },
+
+    "client":{
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name":{ "type": "string" }
+      }
+    },
+
+    "address":{
+      "type": "object",
+      "required": ["full_address"],
+      "properties": {
+        "full_address":{ "type": "string", "minLength": 1 }
+      }
+    }
+
+  }
+}
+
+

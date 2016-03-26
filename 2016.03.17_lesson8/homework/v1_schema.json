@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "required": ["order", "client", "address"],
+  "properties": {
+    "order": {
+      "type": "object",
+      "required": ["product_name", "count"],
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "product_name": {
+          "$ref": "file:include_valid_goods.json"
+        }
+      }
+    },
+
+    "client": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "$ref": "file:include_client_name.json"
+        }
+      }
+    },
+
+    "address": {
+      "$ref" : "file:include_client_address.json"
+    }
+  }
+}
+
+

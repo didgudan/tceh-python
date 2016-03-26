@@ -1,0 +1,13 @@
+{
+	"order":{
+		"product_name":"beef",
+		"count": 10
+	},
+	"client":{
+		"name":"OOO AAA",
+		"email": "hello@world.net",
+		"address":{
+			"full_address":"Barsukova str. 13/51/2356"
+		}
+	}
+}

@@ -32,16 +32,15 @@ def make_empty_file():
         json.dump('', f)
 
 
-def from_json(json_object):
-    # for elem in json_object:
+mdef from_json(json_object):
+    
     if 'author' in json_object:
         return BlogPostModel(json_object)
 
 def load_from_json():
-    try:
-        with open(json_backend, "r") as f:
-            load_data = json.load(f)
-            posts = JSONDecoder(object_hook = from_json).decode(load_data)
+    with open(json_backend, "r") as f:
+        load_data = json.load(f)
+        posts = JSONDecoder(object_hook = from_json).decode(load_data)
 
             return posts
     except IOError as err:

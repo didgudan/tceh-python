@@ -1,0 +1,12 @@
+{
+    "order":{
+      "product_name": "lama",
+      "count": 16
+   },
+  "client":{
+      "name": "AOA OAO"
+   },
+  "address":{
+      "full_address":"Barsukova str. 13/51/2356"
+   }
+}

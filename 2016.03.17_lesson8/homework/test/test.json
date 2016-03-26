@@ -1,0 +1,12 @@
+{
+    "order":{
+      "product_name": "phoenix",
+      "count": 3
+   },
+  "client":{
+      "name": "MYASOCOMBINAD"
+   },
+  "address":{
+      "full_address":"Barsukova str. 13/51/2356"
+   }
+}

@@ -1,0 +1,11 @@
+{
+    "title": "child_schema",
+    "type": "object",
+    "properties": {
+        "wyx":{
+            "type": "number"
+        }
+     },
+    "additionalProperties": false,
+    "required": ["wyx"]
+}
