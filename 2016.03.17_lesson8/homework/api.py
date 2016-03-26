@@ -58,7 +58,7 @@ def validate_json():
         except jsonschema.ValidationError as e:
             add_to_log_message(log_path, str(e))
         except jsonschema.SchemaError as e:
-            print(log_path, str(e))
+            add_to_log_message(log_path, str(e))
         else:
             add_to_log_message(
                 log_path,
