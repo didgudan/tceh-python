@@ -19,9 +19,6 @@ app.config.from_object(config)
 db = SQLAlchemy(app)
 
 
-class PersonDecoder(json.JSONDecoder):
-
-
 @app.route('/', methods=['GET', 'POST'])
 def index():
     from models import User, Post

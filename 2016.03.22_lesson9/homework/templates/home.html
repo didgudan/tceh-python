@@ -1,0 +1,30 @@
+{% extends '_base_template.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="large-12 columns">
+    <h1>Welcome to valex blog!</h1>
+  </div>
+</div>
+
+<div class="row">
+<div class="large-6 columns">
+    {% for post in posts %}
+        <form method="POST" action="{{ url_for('home') }}">
+            {{ form.hidden_tag() }}
+            <input name="id" type="hidden" value="{{ post.id }}">
+            <p>
+                <em><small>posted by {{post.user}}</small></em><br>
+                <strong>{{post.title}}</strong>
+                <button type="submit" value="{{ 'Delete' }}" class="tiny alert button">
+                    Delete
+                </button>
+            </p>
+            <p>{{post.content}}</p>
+            <p>&nbsp;</p>
+        </form>
+    {% endfor %}
+</div>
+</div>
+
+{% endblock %}
