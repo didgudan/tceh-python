@@ -1,0 +1,11 @@
+{% extends '_base_template.html' %}
+
+{% block content_title %}
+    New post
+{% endblock content_title %}
+
+{% block main_content %}
+    {% with button_name='Submit' %}
+        {% include '_base_form.html' %}
+    {% endwith %}
+{% endblock main_content %}
