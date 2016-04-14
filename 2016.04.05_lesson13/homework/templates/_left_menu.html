@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2">
+            <nav class="nav-sidebar">
+                <ul class="nav">
+                    {%- for item in current_menu.children recursive -%}
+                        {% if item.visible == True %}
+                            <!--{{ item.name }}-->
+                            <li {% if active_page == item.name %}class="active"{% endif %}>
+                                <a href="{{ item.url}}">
+                                    {% if item.name == "login" %}
+                                        <i class="glyphicon glyphicon-log-in"></i>
+                                    {% elif item.name == "logout" %}
+                                        <i class="glyphicon glyphicon-log-out"></i>
+                                    {% endif %}
+                                    {{ item.text }}
+                                </a>
+                        {% endif %}
+
+                        {%- if item.children -%}
+                            <ul>{{ loop(item.children) }}</ul>
+                        {%- endif -%}
+                        </li>
+                    {%- endfor -%}
+                </ul>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

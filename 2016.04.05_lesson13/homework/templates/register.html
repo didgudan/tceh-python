@@ -1,0 +1,14 @@
+{% extends '_base_template.html' %}
+{% set active_page = "register" %}
+
+{% block page_title %}регистрируемся{% endblock page_title %}
+
+{% block content_title %}
+    Зарегестрироваться
+{% endblock content_title %}
+
+{% block main_content %}
+    {% with button_name='Register' %}
+        {% include '_base_form.html' %}
+    {% endwith %}
+{% endblock main_content %}

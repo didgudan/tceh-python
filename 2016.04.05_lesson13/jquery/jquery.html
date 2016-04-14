@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="content"></div>
+
+<script type="application/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script type="application/javascript">
+    'use strict';
+
+    (function (window, document, $) {
+        $(document).ready(function() {
+            var content = $('.content');
+            var button = $('<button>').addClass('content-button').text('Press me!');
+
+            button.click(function () {
+                content.css('background', 'red');
+                console.log(content, button);
+            });
+
+            content.append(button);
+        });
+    })(window, document, jQuery);
+</script>
+
+</body>
+</html>

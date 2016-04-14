@@ -1,0 +1,24 @@
+{% from "macros/render_field.html" import render_field %}
+<form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <dl>
+        {% for field in form %}
+            {% if field.id != 'csrf_token' %}
+                {{ render_field(field) }}
+            {% endif %}
+        {% endfor %}
+    </dl>
+    <button type="submit" value="{{ 'Submit' }}" class="tiny submit button">
+        {{ button_name }}
+    </button>
+</form>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul class=flashes>
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}

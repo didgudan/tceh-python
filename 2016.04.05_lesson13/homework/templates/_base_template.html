@@ -1,0 +1,27 @@
+<html>
+<head><title>
+Блог слушателя коллеги valex: {% block page_title %}{% endblock page_title %}
+</title></head>
+<link rel="stylesheet" href="{{ url_for('bower.static', filename='bootstrap/dist/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('bower.static', filename='bootstrap/dist/css/custom.css') }}">
+
+<div class="row">
+    <div class="col-md-2">
+        {% include '_left_menu.html' %}
+    </div>
+    <div class="col-md-8">
+        {% set active_page = active_page %}
+        {% block content %}
+            <h1>{% block content_title %}{% endblock content_title %}</h1>
+            {% block main_content %}{% endblock main_content %}
+        {% endblock content%}
+    </div>
+    <div class="col-md-2"></div>
+ </div>
+
+
+
+<script src="{{ url_for('bower.static', filename='bootstrap/dist/js/bootstrap.js') }}"></script>
+<script src="{{ url_for('bower.static', filename='jquery/dist/jquery.js') }}"></script>
+</body>
+</html>

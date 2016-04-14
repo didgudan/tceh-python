@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="{{ url_for('bower.static', filename='bootstrap/dist/css/bootstrap.min.css') }}">
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+         <h2>{% block content_title %}{% endblock content_title %}</h2>
+        {% block main_content %}{% endblock main_content %}
+    </div>s
+ </div>
+{% endblock content%}
+
+
+</body>
+</html>

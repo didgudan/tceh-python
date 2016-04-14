@@ -17,10 +17,7 @@ from flask.ext.login import LoginManager
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-from flask_zurb_foundation import Foundation
-
 import config
-
 
 
 db = SQLAlchemy()
@@ -32,7 +29,7 @@ def load_user(user_id):
     return User.query.get(user_id)
 
 def create_app():
-    from views import blog, login, main_page
+    from views import *
 
     app = Flask(__name__, template_folder='templates')
     app.config.from_object(config)
@@ -41,14 +38,13 @@ def create_app():
     app.register_blueprint(blog)
     app.register_blueprint(login)
     app.register_blueprint(main_page)
+    app.register_blueprint(bower_blueprint)
 
     db = SQLAlchemy(app)
     db.create_all()
 
     login_manager.init_app(app)
     db.init_app(app)
-
-    Foundation(app)
 
     return app
 

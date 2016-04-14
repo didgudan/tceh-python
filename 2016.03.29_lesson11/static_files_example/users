@@ -1,0 +1,53 @@
+quit
+\q
+\q
+create database winestylist;
+create role winestylist with password 'com1D$wine*(as)admin';
+grant all privilegies on database winestylist to winestylist;
+grant all privileges on database winestylist to winestylist;
+\q
+alter role winestylist with login;
+\q
+\q
+\q
+\t
+\dt
+\l
+\l
+\q
+use tceh_db;
+using tceh_db;
+\c tceh_db 
+SELECT * from observations;
+\q
+\c tceh_db
+CREATE TABLE public.observations
+(
+  id integer NOT NULL DEFAULT nextval('observations_id_seq'::regclass),
+  observation_date date DEFAULT now(),
+  people_available integer,
+  CONSTRAINT observations_pkey PRIMARY KEY (id),
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.observations
+  OWNER TO tceh;
+\q
+create user postgres WITH superuser;
+\q
+\q
+\ld
+\lt
+\l
+\l
+drop database phoenix_example_dev;
+\q
+\l
+drop database art_cources_dev;
+drop database art_cources_test;
+\q
+\l
+\c art_cources_dev 
+\dt
+\s users

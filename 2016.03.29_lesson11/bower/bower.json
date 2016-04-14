@@ -1,0 +1,24 @@
+{
+  "name": "test",
+  "authors": [
+    "Vinkourov Alexander <alex@snowworld.ru>"
+  ],
+  "description": "test",
+  "main": "main.js",
+  "moduleType": [],
+  "keywords": [
+    "frontend",
+    "test",
+    "debig"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

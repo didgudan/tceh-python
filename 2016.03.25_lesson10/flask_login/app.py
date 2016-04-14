@@ -16,7 +16,7 @@ db = SQLAlchemy()
 @login_manager.user_loader
 def load_user(user_id):
     from models import User
-    return User.get(user_id)
+    return User.query.get(user_id)
 
 
 def create_app():

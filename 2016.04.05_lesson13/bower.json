@@ -1,0 +1,23 @@
+{
+  "name": "course_13",
+  "homepage": "https://github.com/tceh-python/tceh-python",
+  "authors": [
+    "sobolevn <mail@sobolevn.me>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize-css": "normalize.css#~4.0.0",
+    "modernizr": "~3.3.1",
+    "jquery": "~2.2.2"
+  }
+}

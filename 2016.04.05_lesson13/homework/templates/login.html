@@ -1,0 +1,13 @@
+{% extends '_base_template.html' %}
+
+{% block page_title %}войти{% endblock page_title %}
+
+{% block content_title %}
+    Страница входа
+{% endblock content_title %}
+
+{% block main_content %}
+    {% set button_name='Login' %}
+    {% set button_classes='btn-primary' %}
+    {% include '_base_form.html' %}
+{% endblock main_content %}

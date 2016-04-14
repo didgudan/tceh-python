@@ -1,0 +1,30 @@
+{% extends '_base_template.html' %}
+{% set active_page = "home" %}
+
+{% block page_title %}добро{% endblock page_title %}
+
+{% block content_title %}Добро пожаловать сюда!{% endblock content_title %}
+{% block content %}
+{{ super() }}
+{% block main_content %}
+
+
+
+    {% for post in posts %}
+        <form method="POST" action="{{ url_for('blog.home') }}">
+            {{ form.hidden_tag() }}
+            <input name="id" type="hidden" value="{{ post.id }}">
+            <p>
+                <em><small>опубликовано {{post.user}}</small></em><br>
+                <strong>{{post.title}}</strong>
+                <button type="submit" value="{{ 'Delete' }}" class="btn btn-xs btn-danger">
+                    Удалить
+                </button>
+            </p>
+            <p>{{post.content}}</p>
+            <p>&nbsp;</p>
+        </form>
+    {% endfor %}
+{% endblock main_content %}
+
+{% endblock content %}

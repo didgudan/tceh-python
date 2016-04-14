@@ -1,0 +1,14 @@
+{% extends '_base_template.html' %}
+{% set active_page = "post" %}
+
+{% block page_title %}новая запись{% endblock page_title %}
+
+{% block content_title %}
+    Новая запись
+{% endblock content_title %}
+
+{% block main_content %}
+    {% with button_name='Submit' %}
+        {% include '_base_form.html' %}
+    {% endwith %}
+{% endblock main_content %}
