@@ -1,0 +1,20 @@
+{% extends 'study/_base.html' %}
+
+{% block title %}Django API: lesson{% endblock title %}
+
+{% block content %}
+    <h1>Lessons page</h1>
+
+    <br></b><h3>Available lessons:</h3>
+    {% for lesson in lessons %}
+        <p><a href="{% url 'study:lesson' lesson.pk %}">{{ lesson }}</a></p>
+    {% endfor %}
+
+    <br><h3>New lesson:</h3>
+    <form action="{% url 'study:lessons' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+{% endblock content %}

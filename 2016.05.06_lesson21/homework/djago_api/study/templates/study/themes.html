@@ -1,0 +1,19 @@
+{% extends 'study/_base.html' %}
+
+{% block title %}Django API: themes{% endblock title %}
+
+{% block content %}
+    <h1>Lesson themes</h1>
+
+    <br></b><h3>Available lessons themes:</h3>
+    {% for theme in themes %}
+        <p><a href="{% url 'study:theme' theme.pk %}">{{ theme }}</a></p>
+    {% endfor %}
+
+    <br><h3>New lesson theme:</h3>
+    <form action="{% url 'study:themes' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock content %}
