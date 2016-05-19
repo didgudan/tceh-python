@@ -12,5 +12,3 @@ router.register(r'lesson', LessonViewSet, 'lesson-list')
 router.register(r'theme', ThemeViewSet, 'theme-detail')
 
 urlpatterns = router.urls
-
-

@@ -16,11 +16,9 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from django.contrib.auth.models import User
-from rest_framework import routers, serializers, viewsets
-
 from study import urls as study_urls
 from rest_api import urls as rest_urls
+from get_from_api import urls as api_get
 
 
 urlpatterns = [
@@ -29,8 +27,11 @@ urlpatterns = [
     url(r'^api-auth/',
         include('rest_framework.urls', namespace='rest_framework')),
 
-    url(r'^api/', include(rest_urls, namespace="rest_api")),
     url(r'^', include(study_urls, namespace='study')),
+
+    url(r'^api/v1/', include(rest_urls, namespace="rest_api")),
+    url(r'^get/v1', include(api_get, namespace='api_get')),
+
 ]
 
 

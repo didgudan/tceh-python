@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     'study',
     'rest_api',
+    'get_from_api',
 ]
 
 MIDDLEWARE_CLASSES = [

@@ -4,12 +4,7 @@
 {% block page_title %}добро{% endblock page_title %}
 
 {% block content_title %}Добро пожаловать сюда!{% endblock content_title %}
-{% block content %}
-{{ super() }}
 {% block main_content %}
-
-
-
     {% for post in posts %}
         <form method="POST" action="{{ url_for('blog.home') }}">
             {{ form.hidden_tag() }}
@@ -26,5 +21,8 @@
         </form>
     {% endfor %}
 {% endblock main_content %}
+{% block content %}
+{{ super() }}
+
 
 {% endblock content %}

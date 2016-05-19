@@ -1,0 +1,44 @@
+{% extends 'study/_base.html' %}
+
+{% block title %}Get from local API{% endblock title %}
+
+{% block content %}
+    <h1>Get data from local API</h1>
+
+    <form action="{% url 'api_get:index' %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-primary" value="Connect to local API">
+    </form>
+
+    {% if connection_result %}
+        <p><p><em>{{ connection_result }}</em></p></p>
+        <p>Connection takes: {{ api_request_time }} seconds.</p>
+    {% endif %}
+
+    {% if index_result %}
+        <strong>Index:</strong>
+        <ul>
+        {% for k, v in index_result.items %}
+            <li><a href="{{ v }}">{{ k }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if lessons_result %}
+        <strong>Lessons:</strong>
+        <ul>
+        {% for lesson in lessons_result %}
+            <li>{{ lesson.number }}. {{ lesson.title }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if themes_result %}
+        <strong>Themes:</strong>
+        <ul>
+        {% for theme in themes_result %}
+            <li>{{ theme.name }}: {{ theme.description }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock content %}

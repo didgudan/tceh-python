@@ -8,8 +8,7 @@ from study.models import Lesson, Theme
 import pdb
 
 def index(request):
-    if request.method == 'GET':
-        return render(request, 'study/index.html')
+    return render(request, 'study/index.html')
 
 
 def lessons(request):

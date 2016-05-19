@@ -19,7 +19,3 @@ class Theme(models.Model):
 
     def __unicode__(self):
         return "Theme: %s" % self.name
-
-
-
-# Create your models here.
